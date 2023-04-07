@@ -14,14 +14,12 @@ function Game() {
             backgroundColor: bgColor[i]
         }
     }
-    // console.log("styles = ", styles);
     let changeColor = (a, b, c) => {
         let tempColor = Array(9).fill("white");
         tempColor[a] = greenColor;
         tempColor[b] = greenColor;
         tempColor[c] = greenColor;
         setBgColor(tempColor);
-        console.log(bgColor);
     }
     let winCombs = [
         [0, 1, 2],
@@ -36,23 +34,18 @@ function Game() {
     // var winFlag = false;
     let endGame = () => {
         setWinFlag(true);
-        console.log("winFlag = ", winFlag);
     }
     let checkWin = () => {
 
         winCombs.forEach(element => {
-            console.log("checking");
             let [a, b, c] = element;
-            console.log(square[a], square[b], square[c]);
             if (square[a] === square[b] && square[b] === square[c] && square[a] != null) {
                 if (square[a] === 'X') {
                     setWinMessage("Player 1 Wins!! Press RESET to play again");
-                    console.log("A won");
                     endGame();
                 }
                 if (square[a] === 'O') {
                     setWinMessage("Player 2 Wins!! Press RESET to play again");
-                    console.log("B won");
                     endGame();
                 }
                 changeColor(a, b, c);
@@ -61,7 +54,6 @@ function Game() {
     }
     let handleClick = (event) => {
         if (event.target.innerHTML !== "X" && event.target.innerHTML !== "O" && winFlag === false) {
-            console.log("here winflag = ", winFlag);
             let string = event.target.id;
             let numb = Number(string.slice(-1));
             square[numb] = isX ? "X" : "O";
@@ -73,7 +65,6 @@ function Game() {
             // setNumb(1);
             checkWin();
             checkDraw();
-            console.log(square);
         }
     }
     let checkDraw = () => {
